@@ -1004,3 +1004,102 @@ h1 span {
   color: #a7a8b5;
   font-size: 11px;
 }
+
+/* --- STEP 3: MATCHER & COMMUNITY CARDS --- */
+.toast-banner {
+  margin-top: 18px;
+  padding: 12px 16px;
+  border: 1px solid rgb(141 240 192 / 40%);
+  border-radius: 10px;
+  background: rgb(141 240 192 / 12%);
+  color: var(--mint);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.match-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.match-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 14px;
+  background: #151720;
+}
+
+.highlight-user-card {
+  border-color: rgb(158 131 255 / 45%);
+  background: linear-gradient(150deg, rgb(158 131 255 / 10%), #151720);
+}
+
+.match-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.match-badge {
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: rgb(158 131 255 / 15%);
+  color: var(--violet);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.reward-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgb(141 240 192 / 15%);
+  color: var(--mint);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.match-game-box,
+.recipient-box {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.match-arrow {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.recipient-bio {
+  color: #b7b8c4;
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.recipient-donated,
+.profile-detail-group {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #191b25;
+  color: #cfcfe0;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.profile-detail-group p + p {
+  margin-top: 6px;
+}
+
+.donate-btn {
+  margin-top: auto;
+  height: 40px;
+}
