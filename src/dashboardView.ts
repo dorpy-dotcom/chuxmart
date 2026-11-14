@@ -1,6 +1,7 @@
 import { state, type UserState } from "./state";
 import { renderWishlistTab } from "./wishlistView";
 import { renderMatchTab, renderCommunityTab } from "./matchView";
+import { renderShopTab } from "./shopView";
 
 export function renderDashboard(app: HTMLDivElement, onLogout: () => void) {
   app.innerHTML = `
@@ -62,14 +63,8 @@ export function renderDashboard(app: HTMLDivElement, onLogout: () => void) {
       renderMatchTab(tabContainer, () => renderDashboard(app, onLogout));
     } else if (state.activeTab === "community") {
       renderCommunityTab(tabContainer);
-    } else {
-      tabContainer.innerHTML = `
-        <div class="step-card">
-          <span class="eyebrow"><span class="live-dot"></span> FINAL STEP NEXT</span>
-          <h2>🛒 STEAM POINT SHOP</h2>
-          <p class="dashboard-subtext">Up next in Step 4: Redeem your ${state.points} PTS for trending Steam games!</p>
-        </div>
-      `;
+    } else if (state.activeTab === "shop") {
+      renderShopTab(tabContainer, () => renderDashboard(app, onLogout));
     }
   }
 

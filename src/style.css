@@ -1103,3 +1103,14 @@ h1 span {
   margin-top: auto;
   height: 40px;
 }
+
+/* --- STEP 4: SHOP BUTTON DISABLED STATE --- */
+.submit-button:disabled,
+.disabled-shop-btn {
+  background: #282a36;
+  box-shadow: none;
+  color: var(--muted);
+  cursor: not-allowed;
+  transform: none !important;
+  filter: none !important;
+}
