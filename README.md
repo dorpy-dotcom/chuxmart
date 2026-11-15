@@ -2,6 +2,10 @@
 
 An online game exchange where players can pass along games they no longer use.
 
+## Website
+
+[http://localhost:5173](http://localhost:5173)
+
 ## Architecture
 
 See the [project architecture diagram](docs/architecture.md) for the current
