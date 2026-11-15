@@ -12,7 +12,7 @@
   font-weight: 400;
 
   --muted: #9a9ba9;
-  --violet: #9e83ff;
+  --accent: #8df0c0;
   --mint: #8df0c0;
   --surface: #191b25;
 }
@@ -50,7 +50,7 @@ a {
   overflow: hidden;
   padding: 32px clamp(24px, 6vw, 88px) 28px;
   background:
-    radial-gradient(ellipse at 18% 80%, rgb(101 72 192 / 9%), transparent 36%),
+    radial-gradient(ellipse at 18% 80%, rgb(141 240 192 / 9%), transparent 36%),
     #11131b;
 }
 
@@ -71,10 +71,10 @@ a {
   width: 35px;
   height: 35px;
   place-items: center;
-  border: 1px solid rgb(158 131 255 / 28%);
+  border: 1px solid rgb(141 240 192 / 28%);
   border-radius: 11px;
-  background: rgb(158 131 255 / 10%);
-  color: var(--violet);
+  background: rgb(141 240 192 / 10%);
+  color: var(--accent);
 }
 
 .brand-mark svg {
@@ -82,7 +82,7 @@ a {
 }
 
 .brand-accent {
-  color: var(--violet);
+  color: var(--accent);
 }
 
 .login-layout {
@@ -145,7 +145,7 @@ h1 {
 }
 
 h1 span {
-  color: var(--violet);
+  color: var(--accent);
 }
 
 .welcome-copy > p {
@@ -180,7 +180,7 @@ h1 span {
 .spark-two {
   right: 9px;
   bottom: 16px;
-  color: var(--violet);
+  color: var(--accent);
   font-size: 25px;
 }
 
@@ -222,7 +222,7 @@ h1 span {
 }
 
 .avatar-two {
-  background: #c5b7f4;
+  background: #b7e9d0;
 }
 
 .avatar-three {
@@ -299,8 +299,8 @@ h1 span {
 }
 
 .input-wrap input:focus {
-  border-color: #9e83ff;
-  box-shadow: 0 0 0 3px rgb(158 131 255 / 12%);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgb(141 240 192 / 12%);
 }
 
 .input-icon {
@@ -318,14 +318,14 @@ h1 span {
 }
 
 .text-link {
-  color: #b49fff;
+  color: var(--accent);
   font-size: 10px;
   font-weight: 600;
   transition: color 160ms ease;
 }
 
 .text-link:hover {
-  color: #d0c4ff;
+  color: #c8ffe3;
 }
 
 .password-toggle {
@@ -381,20 +381,20 @@ h1 span {
 }
 
 .remember-option input:focus-visible + .custom-checkbox {
-  outline: 2px solid var(--violet);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
 .remember-option input:checked + .custom-checkbox {
-  border-color: var(--violet);
-  background: var(--violet);
+  border-color: var(--accent);
+  background: var(--accent);
 }
 
 .remember-option input:checked + .custom-checkbox::after {
   width: 7px;
   height: 4px;
-  border-bottom: 1.5px solid #171321;
-  border-left: 1.5px solid #171321;
+  border-bottom: 1.5px solid #14251c;
+  border-left: 1.5px solid #14251c;
   content: "";
   transform: translateY(-1px) rotate(-45deg);
 }
@@ -408,9 +408,9 @@ h1 span {
   gap: 10px;
   border: 0;
   border-radius: 8px;
-  background: linear-gradient(100deg, #a58bff, #8b70f2);
-  box-shadow: 0 7px 22px rgb(130 102 232 / 20%);
-  color: #171321;
+  background: linear-gradient(100deg, #a4f5d0, #6fdaa6);
+  box-shadow: 0 7px 22px rgb(93 202 145 / 20%);
+  color: #14251c;
   cursor: pointer;
   font-size: 12px;
   font-weight: 700;
@@ -434,10 +434,10 @@ h1 span {
   display: none;
   margin-top: 14px;
   padding: 10px 12px;
-  border: 1px solid rgb(158 131 255 / 22%);
+  border: 1px solid rgb(141 240 192 / 22%);
   border-radius: 7px;
-  background: rgb(158 131 255 / 8%);
-  color: #cfc4ff;
+  background: rgb(141 240 192 / 8%);
+  color: #c8ffe3;
   font-size: 11px;
   line-height: 1.5;
 }
@@ -489,7 +489,7 @@ h1 span {
 .glow-one {
   top: -240px;
   right: 14%;
-  background: #906dff;
+  background: #5eddb5;
 }
 
 .glow-two {
@@ -574,7 +574,7 @@ h1 span {
   .mobile-eyebrow {
     display: inline-flex;
     margin-bottom: 8px;
-    color: var(--violet);
+    color: var(--accent);
     font-size: 9px;
   }
 }
@@ -659,8 +659,8 @@ h1 span {
 }
 
 .nav-tab.active {
-  background: rgb(158 131 255 / 16%);
-  color: var(--violet);
+  background: rgb(141 240 192 / 16%);
+  color: var(--accent);
 }
 
 .user-bar {
@@ -697,8 +697,8 @@ h1 span {
   height: 28px;
   place-items: center;
   border-radius: 50%;
-  background: var(--violet);
-  color: #171321;
+  background: var(--accent);
+  color: #14251c;
   font-size: 12px;
   font-weight: 700;
 }
@@ -788,7 +788,7 @@ h1 span {
 }
 
 .inline-form input:focus {
-  border-color: var(--violet);
+  border-color: var(--accent);
 }
 
 .mini-select {
@@ -806,8 +806,8 @@ h1 span {
   padding: 0 16px;
   border: 0;
   border-radius: 8px;
-  background: var(--violet);
-  color: #171321;
+  background: var(--accent);
+  color: #14251c;
   cursor: pointer;
   font-size: 12px;
   font-weight: 700;
@@ -859,8 +859,8 @@ h1 span {
   height: 32px;
   place-items: center;
   border-radius: 8px;
-  background: rgb(158 131 255 / 14%);
-  color: var(--violet);
+  background: rgb(141 240 192 / 14%);
+  color: var(--accent);
   font-size: 14px;
 }
 
@@ -931,8 +931,8 @@ h1 span {
 }
 
 .highlight-user-card {
-  border-color: rgb(158 131 255 / 45%);
-  background: linear-gradient(150deg, rgb(158 131 255 / 10%), #151720);
+  border-color: rgb(141 240 192 / 45%);
+  background: linear-gradient(150deg, rgb(141 240 192 / 10%), #151720);
 }
 
 .match-top {
@@ -944,8 +944,8 @@ h1 span {
 .match-badge {
   padding: 4px 9px;
   border-radius: 6px;
-  background: rgb(158 131 255 / 15%);
-  color: var(--violet);
+  background: rgb(141 240 192 / 15%);
+  color: var(--accent);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.8px;
@@ -1073,7 +1073,7 @@ h1 span {
 }
 
 .shop-search-wrap input:focus {
-  border-color: var(--violet);
+  border-color: var(--accent);
 }
 
 .shop-game-card {
@@ -1141,8 +1141,8 @@ h1 span {
 .wishlist-match-tag {
   padding: 3px 8px;
   border-radius: 999px;
-  background: rgb(158 131 255 / 18%);
-  color: var(--violet);
+  background: rgb(141 240 192 / 18%);
+  color: var(--accent);
   font-size: 10px;
   font-weight: 700;
 }

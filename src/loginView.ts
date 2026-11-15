@@ -17,7 +17,7 @@ export function renderLogin(app: HTMLDivElement, onLoginSuccess: () => void) {
         <div class="welcome-panel">
           <div class="welcome-copy">
             <span class="eyebrow"><span class="live-dot"></span> THE PLAYER-POWERED EXCHANGE</span>
-            <h1 id="welcome-title">Your next great game is <span>out there.</span></h1>
+            <h1 id="welcome-title">Serving a Community of <span>Gamers</span></h1>
             <p>Donate unused games from your library, match with players who wishlisted them, and earn points for top trending Steam titles.</p>
           </div>
 
