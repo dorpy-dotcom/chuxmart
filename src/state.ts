@@ -8,6 +8,11 @@ export interface CommunityMember {
   donatedGames: string[];
 }
 
+export interface RedeemedGame {
+  title: string;
+  key: string;
+}
+
 export interface UserState {
   isLoggedIn: boolean;
   username: string;
@@ -17,8 +22,9 @@ export interface UserState {
   wishlist: string[];
   unusedInventory: { title: string; platform: string; pointsValue: number }[];
   donatedGames: string[];
-  ownedShopGames: string[];
+  ownedShopGames: RedeemedGame[];
   lastMessage: string;
+  activeModalKey: RedeemedGame | null;
 }
 
 export const FAKE_LOCATIONS = [
@@ -30,7 +36,7 @@ export const FAKE_LOCATIONS = [
   "Starlight Valley, OR"
 ];
 
-export const communityMembers: CommunityMember[] = [
+export const INITIAL_COMMUNITY: CommunityMember[] = [
   {
     id: "u1",
     username: "NovaRunner",
@@ -78,18 +84,54 @@ export const communityMembers: CommunityMember[] = [
   }
 ];
 
-export const state: UserState = {
-  isLoggedIn: false,
-  username: "",
-  location: FAKE_LOCATIONS[0],
-  points: 250,
-  activeTab: "wishlist",
-  wishlist: ["Elden Ring", "Cyberpunk 2077"],
-  unusedInventory: [
-    { title: "Stardew Valley", platform: "Steam", pointsValue: 150 },
-    { title: "Portal 2", platform: "Steam", pointsValue: 100 }
-  ],
-  donatedGames: ["Hollow Knight"],
-  ownedShopGames: [],
-  lastMessage: ""
-};
+const STORAGE_KEY = "chuxmart_state_v1";
+
+function getDefaultState(): UserState {
+  return {
+    isLoggedIn: false,
+    username: "",
+    location: FAKE_LOCATIONS[0],
+    points: 250,
+    activeTab: "wishlist",
+    wishlist: ["Elden Ring", "Cyberpunk 2077"],
+    unusedInventory: [
+      { title: "Stardew Valley", platform: "Steam", pointsValue: 150 },
+      { title: "Portal 2", platform: "Steam", pointsValue: 100 }
+    ],
+    donatedGames: ["Hollow Knight"],
+    ownedShopGames: [],
+    lastMessage: "",
+    activeModalKey: null
+  };
+}
+
+export const communityMembers: CommunityMember[] = JSON.parse(
+  JSON.stringify(INITIAL_COMMUNITY)
+);
+
+const savedRaw = localStorage.getItem(STORAGE_KEY);
+export const state: UserState = savedRaw
+  ? { ...getDefaultState(), ...JSON.parse(savedRaw), activeModalKey: null }
+  : getDefaultState();
+
+export function saveState() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+export function resetDemoState() {
+  localStorage.removeItem(STORAGE_KEY);
+  Object.assign(state, getDefaultState());
+  communityMembers.length = 0;
+  INITIAL_COMMUNITY.forEach((m) =>
+    communityMembers.push(JSON.parse(JSON.stringify(m)))
+  );
+}
+
+export function generateSteamKey(): string {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const block = () =>
+    Array.from({ length: 4 }, () =>
+      chars.charAt(Math.floor(Math.random() * chars.length))
+    ).join("");
+  return `CHUX-${block()}-${block()}`;
+}
