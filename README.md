@@ -2,6 +2,11 @@
 
 An online game exchange where players can pass along games they no longer use.
 
+## Architecture
+
+See the [project architecture diagram](docs/architecture.md) for the current
+browser, build, and static-hosting flow.
+
 ## Run locally
 
 ```sh

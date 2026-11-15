@@ -22,20 +22,6 @@ export function renderLogin(app: HTMLDivElement, onLoginSuccess: () => void) {
           </div>
 
           <div class="game-stack" aria-hidden="true">
-            <div class="game-card card-back">
-              <span class="card-symbol">✦</span>
-              <span class="card-name">NEW WORLDS</span>
-            </div>
-            <div class="game-card card-front">
-              <span class="game-art">
-                <span class="art-orbit orbit-one"></span>
-                <span class="art-orbit orbit-two"></span>
-                <span class="art-core">✳</span>
-              </span>
-              <span class="card-label">YOUR NEXT ADVENTURE</span>
-              <span class="card-title">Ready when<br />you are.</span>
-              <span class="card-arrow">↗</span>
-            </div>
             <span class="float-spark spark-one">✦</span>
             <span class="float-spark spark-two">✳</span>
           </div>
