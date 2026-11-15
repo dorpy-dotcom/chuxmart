@@ -21,7 +21,6 @@ app.innerHTML = `
     <section class="login-layout" aria-labelledby="welcome-title">
       <div class="welcome-panel">
         <div class="welcome-copy">
-          <span class="eyebrow"><span class="live-dot"></span> THE PLAYER-POWERED EXCHANGE</span>
           <h1 id="welcome-title">Your next great game is <span>out there.</span></h1>
         </div>
 
