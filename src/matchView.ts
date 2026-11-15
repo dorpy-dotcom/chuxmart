@@ -1,7 +1,8 @@
-import { state, communityMembers, type CommunityMember } from "./state";
+import { state, communityMembers, FAKE_LOCATIONS, saveState, type CommunityMember } from "./state";
+
+let selectedRegionFilter = "ALL";
 
 export function renderMatchTab(container: HTMLElement, onUpdate: () => void) {
-  // Build matches for each unused game in user's inventory
   const matches: {
     invIndex: number;
     gameTitle: string;
@@ -26,7 +27,6 @@ export function renderMatchTab(container: HTMLElement, onUpdate: () => void) {
         });
       });
     } else {
-      // Fallback: pair with a community player who needs it so any added game can be donated!
       const fallbackUser = communityMembers[idx % communityMembers.length];
       matches.push({
         invIndex: idx,
@@ -117,21 +117,17 @@ export function renderMatchTab(container: HTMLElement, onUpdate: () => void) {
       const item = state.unusedInventory[invIndex];
 
       if (item) {
-        // 1. Add points to current user
         state.points += item.pointsValue;
-        // 2. Record in user's donated games history
         state.donatedGames.push(item.title);
-        // 3. Remove from user's unused inventory
         state.unusedInventory.splice(invIndex, 1);
-        // 4. Remove from recipient's wishlist if present
         const member = communityMembers.find((c) => c.id === recipientId);
         if (member) {
           member.wishlist = member.wishlist.filter(
             (w) => w.toLowerCase() !== item.title.toLowerCase()
           );
         }
-        // 5. Show celebration banner
         state.lastMessage = `You donated "${item.title}" to ${recipientName} and earned +${item.pointsValue} PTS!`;
+        saveState();
         onUpdate();
       }
     });
@@ -139,37 +135,57 @@ export function renderMatchTab(container: HTMLElement, onUpdate: () => void) {
 }
 
 export function renderCommunityTab(container: HTMLElement) {
-  // Include current logged-in user at the top of the community map!
+  const filteredMembers =
+    selectedRegionFilter === "ALL"
+      ? communityMembers
+      : communityMembers.filter((m) => m.location === selectedRegionFilter);
+
   container.innerHTML = `
     <div class="feature-card">
-      <div class="card-header">
-        <span class="eyebrow"><span class="live-dot"></span> LIVE EXCHANGE NETWORK</span>
-        <h3>🌍 Community Profiles, Fake Locations & Donation Ledger</h3>
-        <p>Explore where players are connecting from and see which games each member has donated to the community.</p>
+      <div class="shop-header-row">
+        <div class="card-header">
+          <span class="eyebrow"><span class="live-dot"></span> LIVE EXCHANGE NETWORK</span>
+          <h3>🌍 Community Profiles, Fake Locations & Donation Ledger</h3>
+          <p>Explore where players are connecting from and see which games each member has donated.</p>
+        </div>
+
+        <div class="shop-search-wrap">
+          <select id="region-filter-select" class="select-input">
+            <option value="ALL">🌍 All Fake Locations (${communityMembers.length + 1})</option>
+            ${FAKE_LOCATIONS.map(
+              (loc) =>
+                `<option value="${loc}" ${selectedRegionFilter === loc ? "selected" : ""}>📍 ${loc}</option>`
+            ).join("")}
+          </select>
+        </div>
       </div>
 
       <div class="match-grid">
-        <!-- CURRENT USER CARD -->
-        <div class="match-card highlight-user-card">
-          <div class="recipient-box">
-            <span class="user-avatar">${state.username.charAt(0).toUpperCase()}</span>
-            <div>
-              <strong>${state.username} (You)</strong>
-              <span class="user-loc">📍 ${state.location}</span>
+        ${
+          selectedRegionFilter === "ALL" || selectedRegionFilter === state.location
+            ? `
+          <div class="match-card highlight-user-card">
+            <div class="recipient-box">
+              <span class="user-avatar">${state.username.charAt(0).toUpperCase()}</span>
+              <div>
+                <strong>${state.username} (You)</strong>
+                <span class="user-loc">📍 ${state.location}</span>
+              </div>
+            </div>
+            <div class="profile-detail-group">
+              <p><strong>★ Wishlist (${state.wishlist.length}):</strong> ${
+                state.wishlist.length ? state.wishlist.join(", ") : "None"
+              }</p>
+              <p><strong>🎁 Games Donated (${state.donatedGames.length}):</strong> ${
+                state.donatedGames.length ? state.donatedGames.join(", ") : "None yet"
+              }</p>
             </div>
           </div>
-          <div class="profile-detail-group">
-            <p><strong>★ Wishlist (${state.wishlist.length}):</strong> ${
-              state.wishlist.length ? state.wishlist.join(", ") : "None"
-            }</p>
-            <p><strong>🎁 Games Donated (${state.donatedGames.length}):</strong> ${
-              state.donatedGames.length ? state.donatedGames.join(", ") : "None yet"
-            }</p>
-          </div>
-        </div>
+        `
+            : ""
+        }
 
-        <!-- OTHER COMMUNITY MEMBERS -->
-        ${communityMembers
+        ${filteredMembers
           .map(
             (member) => `
           <div class="match-card">
@@ -194,4 +210,11 @@ export function renderCommunityTab(container: HTMLElement) {
       </div>
     </div>
   `;
+
+  container
+    .querySelector<HTMLSelectElement>("#region-filter-select")
+    ?.addEventListener("change", (e) => {
+      selectedRegionFilter = (e.target as HTMLSelectElement).value;
+      renderCommunityTab(container);
+    });
 }
